@@ -70,5 +70,6 @@ app.post("/update", (req, res) => {
 });
 
 
-app.listen(8000, () => console.log("Servidor en http://localhost:8000"));
+app.listen(80, '0.0.0.0', () => console.log("Servidor en http://localhost"));
+
 
