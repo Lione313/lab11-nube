@@ -70,6 +70,4 @@ app.post("/update", (req, res) => {
 });
 
 
-app.listen(80, '0.0.0.0', () => console.log("Servidor en http://localhost"));
-
-
+app.listen(3000, () => console.log("Servidor en http://localhost:3000"));
