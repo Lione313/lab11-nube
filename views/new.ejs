@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nuevo Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-800 p-8">
+  <div class="max-w-md mx-auto bg-white p-6 shadow rounded">
+    <h2 class="text-2xl font-bold mb-4">Agregar Contacto</h2>
+    <form action="/add" method="POST" class="space-y-4">
+      <div>
+        <label class="block font-medium">Nombre</label>
+        <input type="text" name="name" required class="w-full border px-3 py-2 rounded" />
+      </div>
+      <div>
+        <label class="block font-medium">Email</label>
+        <input type="email" name="email" required class="w-full border px-3 py-2 rounded" />
+      </div>
+      <div>
+        <label class="block font-medium">Teléfono</label>
+        <input type="text" name="phone" required class="w-full border px-3 py-2 rounded" />
+      </div>
+      <div class="flex justify-between">
+        <a href="/" class="text-blue-500 hover:underline text-black">Cancelar</a>
+        <button type="submit" class="bg-black text-white px-4 py-2 rounded">Guardar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

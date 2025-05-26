@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agenda de Contactos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            danger: '#EF4444',
+            success: '#10B981'
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        animation: {
+          wave: 'wave 12s ease-in-out infinite'
+        },
+        keyframes: {
+          wave: {
+            '0%, 100%': { transform: 'translateX(0)' },
+            '50%': { transform: 'translateX(-50px)' }
+          }
+        }
+      }
+    }
+  }
+</script>
+
+  <!-- Heroicons -->
+  <script src="https://unpkg.com/@heroicons/vue@2.0.18/24/outline/index.min.js"></script>
+</head>
+<body class="bg-gray-800 min-h-screen p-8">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-4xl font-bold mb-6 text-center text-white">Agenda de Contactos</h1>
+
+ <div class="flex justify-end mb-6">
+  <a href="/new"
+     class="inline-flex items-center gap-2 bg-gray-700 text-white hover:bg-white hover:text-black px-4 py-2 rounded shadow transition duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+    </svg>
+    Nuevo Contacto
+  </a>
+</div>
+
+
+    <ul class="space-y-4">
+      <% contacts.forEach(c => { %>
+       <li class="relative overflow-hidden bg-white shadow-md rounded-lg p-5 hover:shadow-lg transition duration-300">
+
+  <!-- Fondo animado tipo olas -->
+  <div class="absolute inset-0 z-0 opacity-30">
+    <svg class="w-full h-full animate-wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#3B82F6"
+            d="M0,224L48,202.7C96,181,192,139,288,149.3C384,160,480,224,576,240C672,256,768,224,864,197.3C960,171,1056,149,1152,160C1248,171,1344,213,1392,234.7L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+  </div>
+
+  <!-- Íconos editar y eliminar alineados a la derecha -->
+  <div class="absolute top-4 right-4 z-10 flex space-x-2 pointer-events-auto">
+    <a href="/edit/<%= c.phone %>" title="Editar"
+       class="bg-blue-100 hover:bg-blue-200 text-blue-600 p-2 rounded-full transition">
+      <!-- Ícono lápiz (solid) -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+        <path fill-rule="evenodd" d="M2 15.25V18h2.75L14.81 7.94l-2.75-2.75L2 15.25z" clip-rule="evenodd" />
+      </svg>
+    </a>
+
+    <form method="POST" action="/delete" onsubmit="return confirm('¿Estás seguro de eliminar este contacto?');">
+      <input type="hidden" name="phone" value="<%= c.phone %>"/>
+      <button type="submit" title="Eliminar"
+              class="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-full transition">
+        <!-- Ícono papelera (solid) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+                d="M6 2a1 1 0 00-1 1v1H3.5a.5.5 0 000 1H4v10a2 2 0 002 2h8a2 2 0 002-2V5h.5a.5.5 0 000-1H15V3a1 1 0 00-1-1H6zm3 5a.75.75 0 011.5 0v6a.75.75 0 01-1.5 0V7zm-3 .75a.75.75 0 011.5 0v6a.75.75 0 01-1.5 0v-6zm6 0a.75.75 0 011.5 0v6a.75.75 0 01-1.5 0v-6z"
+                clip-rule="evenodd" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Contenido del contacto -->
+  <div class="relative z-10">
+    <p class="text-lg font-semibold text-gray-800"><%= c.name %></p>
+    <p class="text-gray-600"><%= c.email %></p>
+    <p class="text-gray-500"><%= c.phone %></p>
+  </div>
+</li>
+
+
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
